@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">NotiGlyph</string>
+    <string name="glyph_toy_name">NotiGlyph</string>
+    <string name="glyph_toy_summary">Display custom notification patterns on Glyph</string>
+</resources>
