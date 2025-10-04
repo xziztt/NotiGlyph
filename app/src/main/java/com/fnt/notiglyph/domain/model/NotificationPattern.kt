@@ -19,6 +19,7 @@ data class NotificationPattern(
     val isEnabled: Boolean,
     val iconType: IconType,
     val displayDurationSeconds: Int,
+    val delaySeconds: Int = 0,
     val createdAt: Long
 ) {
     /**
@@ -38,6 +39,7 @@ data class NotificationPattern(
             isEnabled = isEnabled,
             iconType = iconType.name,
             displayDurationSeconds = displayDurationSeconds,
+            delaySeconds = delaySeconds,
             createdAt = createdAt
         )
     }
@@ -67,6 +69,7 @@ data class NotificationPattern(
                 isEnabled = entity.isEnabled,
                 iconType = IconType.valueOf(entity.iconType),
                 displayDurationSeconds = entity.displayDurationSeconds,
+                delaySeconds = entity.delaySeconds,
                 createdAt = entity.createdAt
             )
         }

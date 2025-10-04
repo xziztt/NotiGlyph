@@ -16,5 +16,6 @@ data class PatternEntity(
     val isEnabled: Boolean,
     val iconType: String, // EMOJI, CUSTOM, NONE
     val displayDurationSeconds: Int,
+    val delaySeconds: Int = 0, // Delay before showing on Glyph
     val createdAt: Long
 )

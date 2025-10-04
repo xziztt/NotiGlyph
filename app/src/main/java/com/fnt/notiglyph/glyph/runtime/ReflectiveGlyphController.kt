@@ -23,11 +23,11 @@ class ReflectiveGlyphController : GlyphController {
     private var pendingText: String? = null
     private var context: Context? = null
 
-    companion object {
+            companion object {
         private const val TAG = "ReflectiveGlyphCtrl"
     }
 
-    override fun initAndShowSample(context: Context, text: String) {
+            override fun initAndShowSample(context: Context, text: String) {
         try {
             this.context = context
             pendingText = text

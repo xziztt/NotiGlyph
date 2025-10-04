@@ -146,6 +146,7 @@ private fun getSamplePatterns(): List<NotificationPattern> {
             isEnabled = true,
             iconType = IconType.EMOJI,
             displayDurationSeconds = 5,
+            delaySeconds = 0,
             createdAt = System.currentTimeMillis()
         ),
         NotificationPattern(
@@ -159,6 +160,7 @@ private fun getSamplePatterns(): List<NotificationPattern> {
             isEnabled = true,
             iconType = IconType.EMOJI,
             displayDurationSeconds = 30,
+            delaySeconds = 0,
             createdAt = System.currentTimeMillis()
         ),
         NotificationPattern(
@@ -172,6 +174,7 @@ private fun getSamplePatterns(): List<NotificationPattern> {
             isEnabled = true,
             iconType = IconType.EMOJI,
             displayDurationSeconds = 30,
+            delaySeconds = 0,
             createdAt = System.currentTimeMillis()
         ),
         NotificationPattern(
@@ -185,6 +188,7 @@ private fun getSamplePatterns(): List<NotificationPattern> {
             isEnabled = true,
             iconType = IconType.EMOJI,
             displayDurationSeconds = 30,
+            delaySeconds = 0,
             createdAt = System.currentTimeMillis()
         ),
         NotificationPattern(
@@ -198,6 +202,7 @@ private fun getSamplePatterns(): List<NotificationPattern> {
             isEnabled = true,
             iconType = IconType.EMOJI,
             displayDurationSeconds = 30,
+            delaySeconds = 0,
             createdAt = System.currentTimeMillis()
         ),
         NotificationPattern(
@@ -211,6 +216,7 @@ private fun getSamplePatterns(): List<NotificationPattern> {
             isEnabled = true,
             iconType = IconType.EMOJI,
             displayDurationSeconds = 30,
+            delaySeconds = 0,
             createdAt = System.currentTimeMillis()
         ),
         NotificationPattern(
@@ -224,6 +230,7 @@ private fun getSamplePatterns(): List<NotificationPattern> {
             isEnabled = true,
             iconType = IconType.EMOJI,
             displayDurationSeconds = 20,
+            delaySeconds = 0,
             createdAt = System.currentTimeMillis()
         )
     )

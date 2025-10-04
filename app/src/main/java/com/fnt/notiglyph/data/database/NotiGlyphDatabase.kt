@@ -17,7 +17,7 @@ import com.fnt.notiglyph.data.database.entity.PatternEntity
         NotificationHistoryEntity::class,
         AppSettingsEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class NotiGlyphDatabase : RoomDatabase() {

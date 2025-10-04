@@ -73,7 +73,8 @@ class PatternEditorViewModel(
         priority: Int = _pattern.value?.priority ?: 5,
         isEnabled: Boolean = _pattern.value?.isEnabled ?: true,
         iconType: IconType = _pattern.value?.iconType ?: IconType.EMOJI,
-        displayDurationSeconds: Int = _pattern.value?.displayDurationSeconds ?: 30
+        displayDurationSeconds: Int = _pattern.value?.displayDurationSeconds ?: 30,
+        delaySeconds: Int = _pattern.value?.delaySeconds ?: 0
     ) {
         Log.d(TAG,"Updated pattern setting with fetched values.")
         _pattern.value = _pattern.value?.copy(
@@ -86,7 +87,8 @@ class PatternEditorViewModel(
             priority = priority,
             isEnabled = isEnabled,
             iconType = iconType,
-            displayDurationSeconds = displayDurationSeconds
+            displayDurationSeconds = displayDurationSeconds,
+            delaySeconds = delaySeconds
         ) ?: NotificationPattern(
             appPackageName = appPackageName,
             appDisplayName = appDisplayName,
@@ -98,6 +100,7 @@ class PatternEditorViewModel(
             isEnabled = isEnabled,
             iconType = iconType,
             displayDurationSeconds = displayDurationSeconds,
+            delaySeconds = delaySeconds,
             createdAt = System.currentTimeMillis()
         )
     }

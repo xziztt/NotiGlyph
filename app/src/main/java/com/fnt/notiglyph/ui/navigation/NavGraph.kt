@@ -79,7 +79,7 @@ fun NavGraph(
                 onNavigateBack = { navController.popBackStack() },
                 onSave = { viewModel.savePattern() },
                 onTestGlyph = { displayText -> viewModel.testGlyph(context, displayText) },
-                onUpdatePattern = { pkg, name, type, patternStr, display, priority, icon, duration ->
+                onUpdatePattern = { pkg, name, type, patternStr, display, priority, icon, duration, delay ->
                     viewModel.updatePattern(
                         appPackageName = pkg,
                         appDisplayName = name,
@@ -88,7 +88,8 @@ fun NavGraph(
                         displayTemplate = display,
                         priority = priority,
                         iconType = icon,
-                        displayDurationSeconds = duration
+                        displayDurationSeconds = duration,
+                        delaySeconds = delay
                     )
                 }
             )

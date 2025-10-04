@@ -26,15 +26,23 @@ object GlyphManager {
     private val glyphScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
     /**
-     * Display text on Glyph for specified duration
+     * Display text on Glyph for specified duration with optional delay
      */
-    fun displayText(context: Context, text: String, durationSeconds: Int) {
+    fun displayText(context: Context, text: String, durationSeconds: Int, delaySeconds: Int = 0) {
+
         synchronized(this) {
             // Cancel any existing display
             stopDisplay()
 
+
             currentDisplayJob = glyphScope.launch {
                 try {
+                    // Wait before displaying if delay is set
+                    if (delaySeconds > 0) {
+                        Log.d(TAG, "Waiting ${delaySeconds}s before display")
+                        delay(delaySeconds * 1000L)
+                    }
+
                     Log.d(TAG, "Displaying: $text for ${durationSeconds}s")
 
                     // Initialize if needed
@@ -95,6 +103,7 @@ object GlyphManager {
 
                 // Stop animation and turn off
                 animator?.stop()
+                glyph?.clearDisplay()
                 glyph?.turnOff()
                 glyphInitialized = false
 

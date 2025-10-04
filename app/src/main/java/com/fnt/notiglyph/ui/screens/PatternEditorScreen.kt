@@ -33,7 +33,8 @@ fun PatternEditorScreen(
         displayTemplate: String,
         priority: Int,
         iconType: IconType,
-        displayDurationSeconds: Int
+        displayDurationSeconds: Int,
+        delaySeconds: Int
     ) -> Unit
 ) {
     // Load installed apps when screen opens
@@ -48,9 +49,10 @@ fun PatternEditorScreen(
     var priority by remember { mutableStateOf(pattern?.priority?.toFloat() ?: 5f) }
     var iconType by remember { mutableStateOf(pattern?.iconType ?: IconType.EMOJI) }
     var displayDuration by remember { mutableStateOf(pattern?.displayDurationSeconds ?: 30) }
+    var delaySeconds by remember { mutableStateOf(pattern?.delaySeconds ?: 0) }
     var expanded by remember { mutableStateOf(false) }
-    
-    LaunchedEffect(pattern){
+
+    LaunchedEffect(pattern?.id){
         pattern?.let {
             appPackageName = it.appPackageName
             appDisplayName = it.appDisplayName
@@ -60,6 +62,7 @@ fun PatternEditorScreen(
             priority = it.priority.toFloat()
             iconType = it.iconType
             displayDuration = it.displayDurationSeconds
+            delaySeconds = it.delaySeconds
         }
     }
     
@@ -83,7 +86,8 @@ fun PatternEditorScreen(
                                 displayTemplate,
                                 priority.toInt(),
                                 iconType,
-                                displayDuration
+                                displayDuration,
+                                delaySeconds
                             )
                             onSave()
                             onNavigateBack()
@@ -167,6 +171,16 @@ fun PatternEditorScreen(
             }
 
             // Pattern Input
+            Text(
+                when (patternType) {
+                    PatternType.TEMPLATE -> "Use {variable} to capture parts of the notification. Example: arriving in {minutes} min"
+                    PatternType.REGEX -> "Use regular expressions with capture groups. Example: ETA: (\\d+):(\\d+)"
+                    PatternType.KEYWORD -> "Use keywords with AND/OR operators. Example: delivered OR arrived"
+                },
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(bottom = 4.dp)
+            )
             OutlinedTextField(
                 value = patternString,
                 onValueChange = { patternString = it },
@@ -235,6 +249,21 @@ fun PatternEditorScreen(
                     }
                 },
                 label = { Text("Display Duration (seconds)") },
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            // Display Delay
+            Text("Display Delay: $delaySeconds seconds", style = MaterialTheme.typography.titleMedium)
+            Text(
+                "Wait before showing on Glyph",
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Slider(
+                value = delaySeconds.toFloat(),
+                onValueChange = { delaySeconds = it.toInt() },
+                valueRange = 0f..30f,
+                steps = 29,
                 modifier = Modifier.fillMaxWidth()
             )
 

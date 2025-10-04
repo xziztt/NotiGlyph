@@ -107,7 +107,7 @@ class NotificationParserService : NotificationListenerService() {
                     )
 
                     // Display directly on Glyph
-                    displayOnGlyph(sbn.key, result.displayText, pattern.displayDurationSeconds)
+                    displayOnGlyph(sbn.key, result.displayText, pattern.displayDurationSeconds, pattern.delaySeconds)
 
                     // Emit the display text to be shown on Glyph (for GlyphToyService compatibility)
                     _matchedNotifications.emit(result.displayText)
@@ -143,14 +143,19 @@ class NotificationParserService : NotificationListenerService() {
         }
     }
 
-    private fun displayOnGlyph(notificationKey: String, displayText: String, durationSeconds: Int) {
-        Log.d(TAG, "Displaying on Glyph: $displayText for ${durationSeconds}s [key: $notificationKey]")
+    private fun displayOnGlyph(notificationKey: String, displayText: String, durationSeconds: Int, delaySeconds: Int) {
+        if (delaySeconds > 0) {
+            Log.d(TAG, "Will display on Glyph after ${delaySeconds}s delay: $displayText for ${durationSeconds}s [key: $notificationKey]")
+        } else {
+            Log.d(TAG, "Displaying on Glyph: $displayText for ${durationSeconds}s [key: $notificationKey]")
+        }
 
         // Track this notification as active
         activeNotificationKeys.add(notificationKey)
 
-        // Use GlyphManager singleton to display
-        GlyphManager.displayText(applicationContext, displayText, durationSeconds)
+        // Use GlyphManager singleton to display (with delay if specified)
+        GlyphManager.displayText(applicationContext, displayText, durationSeconds, delaySeconds)
+
     }
 
     private fun extractNotificationData(sbn: StatusBarNotification): NotificationData? {
